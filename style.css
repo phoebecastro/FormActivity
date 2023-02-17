@@ -5,7 +5,7 @@ body {
 h1{
     text-align: center;
 }
-input[ type="submit"] {
+input[ type="button"] {
     color:white;
     background-color:green;
     padding: 2px 10px 2px 10px;
@@ -16,7 +16,7 @@ input[ type="reset"]{
     padding: 2px 10px 2px 10px;
 }
 form {
-    margin-left: 520px;
+    margin-left: 620px;
     margin-top: 50px; 
     padding: 10px 25px 20px 15px;
     background: white;
