@@ -4,22 +4,65 @@
         <title>Form Activity</title>
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Oswald'>
+        <script language="JavaScript" type="text/javascript">
+           function validate() {
+            var password = document.forms["myForm"]["password"].value;
+            var p_error = document.getElementById("password-error");
+            if (password.length < 8) {
+                p_error.innerHTML = "Password must be at least 8 characters." + "<br/>";
+                p_error.style.color = "red";
+                p_error.style.fontSize = "13px";
+            } else {
+                p_error.innerHTML = "";
+            }
+            var dob = new Date(document.forms["myForm"]["bday"].value);
+            var error1 = document.getElementById("dob-error");
+            var curr = new Date();
+            var age = curr.getFullYear() - dob.getFullYear();
+
+            if (dob.getMonth() > curr.getMonth()){
+                age--;
+            }
+            if (age < 21){
+                error1.innerHTML = "Minors are not allowed!" + "<br/>";
+                error1.style.color = "red";
+                error1.style.fontSize = "13px";
+            }
+            else {
+                error1.innerHTML = "";
+            }
+
+            var h = document.getElementById("Hooray!");
+            if (password.length > 8 && age > 21) {
+                h.innerHTML = "Hooray! Your account has been successfully created." + "<br/>";
+                h.style.color = "green";
+                h.style.fontSize = "13px";
+            }
+            else {
+                h.innerHTML = "";
+            }
+        }
+        </script>        
     </head>
     <body>
-        <form>
+        <form name="myForm">
+            
         <h1>Registration Form</h1>
+            <span id="Hooray!"></span>
         First Name: <input type="text" name="firstname"/><br/>
         Last Name: <input type="text" name="lastname"/><br/>
         Nick Name: <input type="text" name="nickname"/><br/>
         Email: <input type="text" name="email"/><br/>
         Password: <input type="password" name="password"/><br/>
-        Date of Birth: <input type="date" nam="bday"/><br/>
+        <span id="password-error"></span>
+        Date of Birth: <input type="date" name="bday"/><br/>
+        <span id="dob-error"></span>
         Gender: <input type="radio" name="male" value="male"/>Male
         <input type="radio" name="female" value="female"/>Female
         <input type="radio" name="other" value="other"/>Other<br/>
         Mobile: <input type="number" name="mobile"/><br/>
         Address: <textarea name="address" cols="25" rows="8"></textarea><br/>
-        <input type="submit" name="submit" value="Submit"/>
+        <input type="button" name="submit" value="Submit" onclick="validate()"/>
         <input type="reset" name="reset" value="Reset"/>
         </form>
     </body>
